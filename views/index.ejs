@@ -1,0 +1,44 @@
+<div class="main-content">
+    <h1 class="title">Discover amazing places in Euphoria</h1>
+    <p class="description">Unlock the Joy of Discovery with Euphoria: The Ultimate Travel Companion.</p>
+    <div class="block-registration">
+        <button class="signup">Sign up</button>
+        <button class="login discover">Discover</button>
+    </div>
+</div>
+<div class="swiper mySwiper" style=
+    "--swiper-pagination-color: hsla(0, 0%, 95.7%, 0.8);;
+    --swiper-pagination-bullet-width: 16px;
+    --swiper-pagination-bullet-height: 16px;
+    --swiper-pagination-bullet-inactive-color:#383838;">
+    <div class="swiper-wrapper">
+        <% data.forEach(article => { %>
+            <div class="swiper-slide">
+              <a href="/post/<%= article._id  %>">
+                  <div class="places-card">
+                      <div class="places-card_image-wrap">
+                          <img loading="lazy" src="<%= article.img  %>" alt="" class="image">
+                      </div>
+                      <div class="places-card_image-overlay"></div>
+                      <div class="places-card_content">
+                          <div class="places-card_country-text"><%= article.mintitle  %></div>
+                          <h3 class="places-card_heading-text"><%= article.title  %></h3>
+                          <div class="places-card_desc-wrap" >
+                              <p class="places-card_desc-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                          </div>
+                      </div>
+                  </div>
+              </a>
+            </div>
+        <% }) %>
+
+      <div class="swiper-slide"></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-scrollbar"></div>
+    <div class="swiper-pagination"></div>
+
+
+</div>
+
