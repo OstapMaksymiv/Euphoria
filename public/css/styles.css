@@ -484,7 +484,7 @@ ul{
 }
 
 .img_cloud .header__list li a:hover {
-  transform: translateY(-20px); 
+  /* transform: translateY(-20px);  */
 }
 
 .img_cloud .header__list li:nth-child(1) {
@@ -541,11 +541,31 @@ ul{
 #searchClose:hover{
   color: var(--light-gray);
 }
+.data_mintitle{
+  opacity: 0.6;
+  font-size:1rem;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+.data_contacts{
+  font-size: 0.7rem;
+  color: var(--white80)
+  
+}
+.data_contacts a{
+  cursor: pointer;
+  color: white;
+}
 .article{
+  width: 90%;
+  padding:20px 0 20px 0;
   margin-top: 100px;
   display: flex;
   gap: 30px;
   justify-content: center;
+  background-color: rgba(0, 0, 0, 0.589);
+  border-radius: 38px;
+
 }
 .article .main-content{
   flex-direction: column;
@@ -887,6 +907,82 @@ ul{
   transform: translateX(200%);
 }
 
+
+.wrapper {
+
+padding: 20px 0;
+
+}
+#search-container {
+  margin: 1em 0;
+}
+#search-container input {
+  background-color: transparent;
+  width: 40%;
+  border: 2px solid #a08b7d;
+  position: relative;
+  padding: 1em;
+  border-radius: 15px;
+  outline: none;
+  color: rgb(255, 255, 255);
+  transition: all 0.3s ease-in-out;
+}
+#search-container input:hover{
+  border-color: #dbc7ba;
+}
+#search-container input:focus {
+  border-color: #dbc7ba;
+}
+#search-container button {
+  cursor: pointer;
+  padding: 1em 2em;
+  margin-left: 1em;
+  background-color: #303139;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 0.5em;
+  transition: all 1s ease;
+
+}
+#search-container button:hover{
+  background-color: #43444e;
+  /* transform: scale(1.05); */
+}
+.button-value {
+  border: 2px solid #6F6F6F;
+  padding: 1em 2.2em;
+  border-radius: 2.5rem;
+  background-color: transparent;
+  color: var(--light-gray);
+  cursor: pointer;
+  transition: 0.6s ease;
+}
+.active-discover {
+  /* filter:drop-shadow(#9ec8e2 0 0 1px); */
+  background-color: #303139;
+}
+#products {
+
+
+  display: grid;
+  grid-template-columns: repeat(4,280px);
+  grid-template-rows: repeat(3,340px);
+  gap:20px;
+  padding: 2em 0;
+}
+
+.hide {
+  display: none;
+}
+
+.pagination{
+  font-size: 1.3rem;
+  color: var(--white10);
+  transition: 0.6s ease;
+}
+/* .pagination:hover{
+  color: var(--white80);
+} */
 @media (min-width:3215px) {
   .swiper-slide:nth-last-child(1) {
     display: none;

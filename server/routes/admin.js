@@ -146,6 +146,7 @@ router.post('/add-post',upload.single('img'), authMiddleware,async (req, res) =>
           title: req.body.title,
           mintitle: req.body.mintitle,
           body: req.body.body,
+          section:req.body.section,
           img: `/uploads/${webpFilename}` // Save the relative URL of the WebP file
         });
     
@@ -182,6 +183,7 @@ router.post('/add-post',upload.single('img'), authMiddleware,async (req, res) =>
         title: req.body.title,
         mintitle: req.body.mintitle,
         body: req.body.body,
+        section:req.body.section,
         img:req.body.img
       });
   

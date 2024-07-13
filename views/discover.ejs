@@ -1,0 +1,48 @@
+<div class="wrapper">
+    <div id="search-container">
+      <input
+        type="search"
+        id="search-input"
+        placeholder=" Search product name here.."
+      />
+      <button id="search">Search</button>
+    </div>
+    <div id="buttons">
+      <button class="button-value" onclick="filterProduct('all')">All</button>
+      <button class="button-value" onclick="filterProduct('Mountains')">
+        Mountains
+      </button>
+      <button class="button-value" onclick="filterProduct('Beaches')">
+        Beaches
+      </button>
+      <button class="button-value" onclick="filterProduct('Wonders of the World')">
+        Wonders of the World
+      </button>
+    </div>
+    <div id="products">
+       <% data.forEach(article => { %>
+            <div class="swiper-slide card <%= article.section  %> hide">
+            <a href="/post/<%= article._id  %>">
+                <div class="places-card">
+                    <div class="places-card_image-wrap">
+                        <img loading="lazy" src="<%= article.img  %>" alt="" class="image">
+                    </div>
+                    <div class="places-card_image-overlay"></div>
+                    <div class="places-card_content">
+                        <div class="places-card_country-text"><%= article.mintitle  %></div>
+                        <h3 class="places-card_heading-text product-name"><%= article.title  %></h3>
+                        <div class="places-card_desc-wrap" >
+                            <p class="places-card_desc-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+        <% }) %>
+    </div>
+    <% if (nextPage !== null) { %>
+     <a href="/discover?page=<%= nextPage  %>" class="pagination" style="color: var(--white80) !important;">&lt; View Older Posts</a>
+    <% } else { %>
+        <a href="/discover?page=<%= nextPage  %>" class="pagination">&lt; View Older Posts</a>
+    <% } %>
+</div>

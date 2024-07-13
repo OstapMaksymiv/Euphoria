@@ -13,6 +13,10 @@ const PostSchema = new Schema({
         type:String,
         require: true
     },
+    section:{
+        type:String,
+        require:true
+    },
     img: {
         type: String,
         required: true
