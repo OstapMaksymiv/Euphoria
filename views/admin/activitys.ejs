@@ -1,0 +1,59 @@
+<a href="/dashboard" style="margin-bottom: 20px !important; display: block;">&larr; Back</a>
+<div class="activitys_page">
+  <div class="filter_activity">
+    <div id="activity_search_container">
+      <input
+      type="search"
+      id="activity_search-input"
+      placeholder=" Search product name here.."
+      />
+      <button id="activity_search_btn">Search</button>
+    </div>
+    <label class="price_label" for="vol">Price</label>
+    <div style="margin:5px 0 10px 0;">
+      <input type="number" id="from" name="vol" min="0" max="500" placeholder="From">
+      <input type="number" id="to" name="vol" min="0" max="500" placeholder="To">
+    </div>
+    <label class="type_label">Type</label>
+    <ul class="options">
+      <li>
+        <input type="radio" name="type" value="all" id="all" checked>
+        <label for="all">All</label>
+      </li>
+      <li>
+        <input type="radio" name="type" value="Water" id="Water">
+        <label for="Water">Water</label>
+      </li>
+      <li>
+        <input type="radio" name="type" value="Mountain" id="Mountain">
+        <label for="Mountain">Mountain</label>
+      </li>
+      <li>
+        <input type="radio" name="type" value="Sky" id="Sky">
+        <label for="Sky">Sky</label>
+      </li>
+    </ul>
+  </div>
+  
+  <ul class="admin-posts">
+    
+    <% data.forEach(activity => { %>
+      
+      <li class="<%= activity.section  %> hide act" id="<%=  activity.price %>">
+        <a style="display: flex;align-items: center;" class="activity-title" href="/activity/<%= activity._id %>">
+          <%= activity.title %> &nearr;
+        </a>
+        <div class="admin-post-controls">
+          <a href="/edit-activity/<%= activity._id %>" class="btn">Edit</a>
+          
+          <form action="/delete-activity/<%= activity._id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" class="btn-delete btn">
+          </form>
+          
+        </div>
+        
+      </li>
+      
+      <% }) %>
+    </ul>
+  </div>

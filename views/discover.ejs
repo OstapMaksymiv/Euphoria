@@ -32,17 +32,68 @@
                         <div class="places-card_country-text"><%= article.mintitle  %></div>
                         <h3 class="places-card_heading-text product-name"><%= article.title  %></h3>
                         <div class="places-card_desc-wrap" >
-                            <p class="places-card_desc-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                            <p class="places-card_desc-text"><%= article.body.slice(0, 55) %>....</p>
                         </div>
                     </div>
                 </div>
             </a>
             </div>
         <% }) %>
+
+            <% if (nextPage !== null) { %>
+                <a href="/discover?page=<%= nextPage  %>" class="pagination discR_pagination" >- &gt;</a>
+                <% } %>
+            <% if (nextPage === null) { %>
+                <a href="/discover?page=<%= nextPage  %>" aria-disabled="true" class="pagination discR_pagination disabled-button" >- &gt;</a>
+                <% } %>
+            <% if (priviesPage !== null) { %>
+                <a href="/discover?page=<%= priviesPage   %>" class="pagination discL_pagination">&lt; -</a>
+            <% } %>
+            <% if (priviesPage === null) { %>
+                <a href="/discover?page=<%= priviesPage   %>" aria-disabled="true" class="pagination discL_pagination disabled-button">&lt; -</a>
+            <% } %>
+
     </div>
-    <% if (nextPage !== null) { %>
-     <a href="/discover?page=<%= nextPage  %>" class="pagination" style="color: var(--white80) !important;">&lt; View Older Posts</a>
-    <% } else { %>
-        <a href="/discover?page=<%= nextPage  %>" class="pagination">&lt; View Older Posts</a>
-    <% } %>
 </div>
+<div class="temporary_class">
+  <div class="registration_container" id="container">
+      <div class="form-container sign-up">
+          <form action="/register" method="post">
+              <i class="ri-arrow-left-circle-line arrow_signin"></i>
+              <h1>Create Account</h1>
+              <span>or use your email for registeration</span>
+              <input type="text" placeholder="First Name" name="firstName">
+              <input type="text" placeholder="Last Name" name="lastName">
+              <input type="email" placeholder="Email" name="email">
+              <input type="password" placeholder="Password" name="password">
+              <button type="submit">Sign Up</button>
+          </form>
+      </div>
+      <div class="form-container sign-in">
+          <form action="/login" method="post">
+              <i class="ri-arrow-right-circle-line arrow_signup"></i>
+              <h1>Sign In</h1>
+              <span>or use your email password</span>
+              <input type="email" placeholder="Email" name="email">
+              <input type="password" placeholder="Password" name="password">
+              <button type="submit">Sign In</button>
+          </form>
+      </div>
+      <div class="toggle-container">
+          <div class="toggle">
+              <div class="toggle-panel toggle-left">
+                  <h1>Welcome Back!</h1>
+                  <p>Enter your personal details to use all of site features</p>
+                  <button class="hidden" id="login">Sign In</button>
+              </div>
+              <div class="toggle-panel toggle-right">
+                  <h1>Hello, Friend!</h1>
+                  <p>Register with your personal details to use all of site features</p>
+                  <button class="hidden" id="register">Sign Up</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="bg"></div>

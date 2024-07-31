@@ -1,0 +1,28 @@
+<div style="width: 100%;height: 100%;display: flex;flex-direction: column;align-items: center;justify-content: center; gap: 15px;">
+
+    <div class="admin-title">
+      <h2>View / Edit Impression</h2>
+    
+    </div>
+    <form action="/edit-impression/<%= data._id %>?_method=PUT" class="addingPost_form" method="POST" >
+        <label for="title"><b>Title</b></label>
+        <input type="text" placeholder="Impression Title" name="title" required value="<%= data.title  %>">
+      
+        <label for="text"><b>Content</b></label>
+        <textarea name="text" cols="50" rows="10" placeholder="Impression Text" required><%= data.text  %></textarea>
+      
+        <label for="name"><b>Name</b></label>
+        <input type="text" name="name" placeholder="User Name" required value="<%= data.name  %>">
+      
+        <label for="surname"><b>Surname</b></label>
+        <input type="text" name="surname" placeholder="User Surname" required value="<%= data.surname  %>">
+      
+        <input type="submit" value="Update" class="btn form_btn">
+    </form>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <a href="/dashboard/impressions">&larr; Back</a>
+      <form action="/delete-impression/<%= data._id %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete" class="btn form_btn">
+      </form>
+    </div>
+  </div>

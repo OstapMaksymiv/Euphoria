@@ -1,0 +1,23 @@
+
+<div class="admin-title">
+    <h2>Add New Comments</h2>
+  </div>
+  
+  <form class="addingPost_form" action="/add-impression" method="POST">
+    <label for="title"><b>Title</b></label>
+    <input type="text" placeholder="Impression Title" name="title" required>
+  
+    <label for="text"><b>Content</b></label>
+    <textarea name="text" cols="50" rows="10" placeholder="Impression Text" required></textarea>
+  
+    <label for="name"><b>Name</b></label>
+    <input type="text" name="name" placeholder="User Name" required>
+  
+    <label for="surname"><b>Surname</b></label>
+    <input type="text" name="surname" placeholder="User Surname" required>
+  
+    <input type="submit" value="Add" class="btn form_btn">
+  </form>
+  
+  <a href="/dashboard">&larr; Back</a>
+  

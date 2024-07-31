@@ -1,0 +1,26 @@
+
+
+  
+  <div class="admin-title">
+    <h2>Add New Activity</h2>
+  </div>
+
+
+<form class="addingPost_form" action="/add-activity" method="POST"  enctype="multipart/form-data">
+  <label for="title"><b>Title</b></label>
+  <input type="text" placeholder="Post Title" name="title">
+  <label for="price"><b>Price</b></label>
+  <input type="number" placeholder="Post Mini Title" name="price">
+  <label for="text"><b>Content</b></label>
+  <textarea name="text" cols="50" rows="10"></textarea>
+  <label for="section"><b>Section</b></label>
+  <input type="text" placeholder="Activity Section" name="section">
+  <label for="first_img"><b>Image First</b></label>
+  <input class="img_inp" type="file" name="first_img">
+  <label for="second_img"><b>Image Second</b></label>
+  <input class="img_inp" type="file" name="second_img">
+  <label for="third_img"><b>Image Third</b></label>
+  <input class="img_inp" type="file" name="third_img">
+  <input type="submit" value="Add" class="btn form_btn">
+</form>
+<a href="/dashboard">&larr; Back</a>

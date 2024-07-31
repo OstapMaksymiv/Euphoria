@@ -1,0 +1,40 @@
+<div style="width: 100%;height: 100%;display: flex;flex-direction: column;align-items: center;justify-content: center; gap: 15px;">
+
+  <div class="admin-title">
+    <h2>View / Edit Activity</h2>
+  </div>
+  <form action="/edit-activity/<%= data._id %>?_method=PUT" method="POST" class="addingPost_form" enctype="multipart/form-data">
+      <label for="title"><b>Title</b></label>
+      <input type="text" placeholder="Post Title" name="title" value="<%= data.title  %>">
+    
+      <label for="price"><b>Price</b></label>
+      <input type="number" placeholder="Post Mini Title" name="price" value="<%= data.price  %>">
+    
+      <label for="text"><b>Content</b></label>
+      <textarea name="text" cols="50" rows="10"><%= data.text %></textarea>
+    
+      <label for="section"><b>Section</b></label>
+      <input type="text" placeholder="Activity Section" name="section" value="<%= data.section %>">
+    
+      <label for="first_img"><b>Image First</b></label>
+      <img src="<%= data.first_img %>" alt="Current Image" style="width: 100px; height: auto;">
+      <input class="img_inp" type="file" name="first_img">
+    
+      <label for="second_img"><b>Image Second</b></label>
+      <img src="<%= data.second_img %>" alt="Current Image" style="width: 100px; height: auto;">
+      <input class="img_inp" type="file" name="second_img">
+    
+      <label for="third_img"><b>Image Third</b></label>
+      <img src="<%= data.third_img %>" alt="Current Image" style="width: 100px; height: auto;">
+      <input class="img_inp" type="file" name="third_img">
+    
+      <input type="submit" value="Update" class="btn form_btn">
+    </form>
+
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <a href="/dashboard/activitys">&larr; Back</a>
+      <form action="/delete-activity/<%= data._id %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete" class="form_btn btn">
+      </form>
+    </div>
+</div>

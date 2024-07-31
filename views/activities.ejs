@@ -1,0 +1,145 @@
+<div class="activities_page">
+    <h1 class="activity_title">Activities</h1>
+    <div class="activity_block">
+    
+        <div class="filter_activity">
+            <div id="activity_search_container">
+                <input
+                  type="search"
+                  id="activity_search-input"
+                  placeholder=" Search product name here.."
+                />
+                <button id="activity_search_btn">Search</button>
+            </div>
+            <label class="price_label" for="vol">Price</label>
+            <div style="margin:5px 0 10px 0;">
+                <input type="number" id="from" name="vol" min="0" max="500" placeholder="From">
+                <input type="number" id="to" name="vol" min="0" max="500" placeholder="To">
+            </div>
+            <label class="type_label">Type</label>
+            <ul class="options">
+                <li>
+                    <input type="radio" name="type" value="all" id="all" checked>
+                    <label for="all">All</label>
+                </li>
+                <li>
+                    <input type="radio" name="type" value="Water" id="Water">
+                    <label for="Water">Water</label>
+                </li>
+                <li>
+                    <input type="radio" name="type" value="Mountain" id="Mountain">
+                    <label for="Mountain">Mountain</label>
+                </li>
+                <li>
+                    <input type="radio" name="type" value="Sky" id="Sky">
+                    <label for="Sky">Sky</label>
+                </li>
+            </ul>
+        </div>
+        <div class="activities">
+            <% data.forEach(activity => { %>
+                <div class="activity <%= activity.section  %> hide" id="<%=  activity.price %>" onclick="window.location.href='/activity/<%= activity._id %>'">
+                        <img src="<%= activity.first_img  %>" alt="">
+        
+                        <% if (activity.section === 'Mountain') { %>
+                         <img class="activity_icon" src="/img/icon_mountain.png" alt="">
+                        <% } else if (activity.section === 'Sky') { %>
+                            <img class="activity_icon" src="/img/icon_sky.png"  alt="">
+            
+                            <% } else { %>
+                                <img class="activity_icon" src="/img/icon_water.png" alt="">
+                                <% } %>
+                        <div class="activity_mainInfo">
+                            <h2  style="<% if (activity.section === 'Mountain') { %>filter: drop-shadow(3px 3px 3px rgba(78, 30, 30));
+                                <% } else if(activity.section === 'Sky') { %>
+                                    filter: drop-shadow(3px 3px 3px rgba(255, 255, 255, 0.378));
+                                    <% } else { %>
+                                        filter: drop-shadow(3px 3px 3px rgba(79, 148, 180, 0.836)); 
+                                <% } %>" class="activity-title">
+                                <%= activity.title %>
+                            </h2>
+                            <p><span>Price</span> <%=  activity.price %> $</p>
+                        </div>
+                </div>
+            <% }) %>
+            <% if (nextPage !== null) { %>
+                <a href="/activities?page=<%= nextPage  %>" class="pagination right_pagination" > -&gt;</a>
+                <% } %>
+            <% if (nextPage === null) { %>
+                <a href="/activities?page=<%= nextPage  %>" aria-disabled="true" class="pagination right_pagination disabled-button" > -&gt;</a>
+                <% } %>
+            <% if (priviesPage !== null) { %>
+                <a href="/activities?page=<%= priviesPage   %>" class="pagination left_pagination">&lt;-</a>
+            <% } %>
+            <% if (priviesPage === null) { %>
+                <a href="/activities?page=<%= priviesPage   %>" aria-disabled="true" class="pagination left_pagination disabled-button">&lt;-</a>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="temporary_class">
+    <div class="registration_container" id="container">
+        <div class="form-container sign-up">
+            <form action="/register" method="post">
+                <i class="ri-arrow-left-circle-line arrow_signin"></i>
+                <h1>Create Account</h1>
+                <span>or use your email for registeration</span>
+                <input type="text" placeholder="First Name" name="firstName">
+                <input type="text" placeholder="Last Name" name="lastName">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form action="/login" method="post">
+                <i class="ri-arrow-right-circle-line arrow_signup"></i>
+                <h1>Sign In</h1>
+                <span>or use your email password</span>
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="bg"></div>

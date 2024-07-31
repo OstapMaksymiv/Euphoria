@@ -1,0 +1,115 @@
+<h1 class="journal_title">What Our Clients Say</h1>
+<i style="<% if (access) { %> display: block; <% } else { %> display: none; <% } %>"
+   class="ri-chat-quote-line comment_btn fa-shake fa-solid"></i>
+
+<div class="mountain-swiper">
+    <% data.forEach(impression => { %>
+        <div class="impression" style="
+            <% 
+            const lastTwoChars = impression.id.slice(-2);
+            const lastTwoDigits = parseInt(lastTwoChars, 10);
+            if (!isNaN(lastTwoDigits) && lastTwoDigits % 2 === 0) { %>
+                background-color: white;
+            <% } else { %>
+                background-color: #80B1EA;
+            <% } %>">
+            <p class="question_mark">"</p>
+            <p class="impression_text"><%= impression.text %></p>
+            <hr>
+            <div class="impression_down">
+                <p class="impression_persone"><%= impression.name %> <%= impression.surname %></p>
+                <p class="impression_title"><%= impression.title %></p>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<div class="activity-swiper">
+    <% actimprdata.forEach(impres => { %>
+        <div class="impression" style="
+            <% 
+            const lastTwoChar = impres.id.slice(-2);
+            const lastTwoDigit = parseInt(lastTwoChar, 10);
+            if (!isNaN(lastTwoDigit) && lastTwoDigit % 2 === 0) { %>
+                background-color: white;
+            <% } else { %>
+                background-color: #80B1EA;
+            <% } %>">
+            <p class="question_mark">"</p>
+            <p class="impression_text"><%= impres.text %></p>
+            <hr>
+            <div class="impression_down">
+                <p class="impression_persone"><%= impres.name %> <%= impres.surname %></p>
+                <p class="impression_title"><%= impres.title %></p>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<div class="crt-impr_btn">
+    <form action="/add-userImpression" class="impression_form" method="POST">
+        <h2>Add Your Impression</h2>
+
+        <label for="title"><b>Title</b></label>
+        <input type="text" placeholder="Impression Title" name="title" required>
+
+        <label for="text"><b>Content</b></label>
+        <textarea name="text" cols="50" rows="10" placeholder="Impression Text" required></textarea>
+
+        <% if (userdata && userdata.firstName) { %>
+            <input type="hidden" name="name" value="<%= userdata.firstName %>">
+            <input type="hidden" name="surname" value="<%= userdata.lastName %>">
+        <% } else { %>
+            <input type="hidden" name="name" value="">
+            <input type="hidden" name="surname" value="">
+        <% } %>
+
+        <input type="submit" value="Add" class="btn form_btn">
+    </form>
+</div>
+
+
+
+  <div class="temporary_class">
+    <div class="registration_container" id="container">
+        <div class="form-container sign-up">
+            <form  action="/register" method="post">
+                <i class="ri-arrow-left-circle-line arrow_signin"></i>
+                <h1>Create Account</h1>
+                <span class="hide">Invalid credentials</span>
+                <input type="text" placeholder="First Name" name="firstName">
+                <input type="text" placeholder="Last Name" name="lastName">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <button type="submit" >Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form class="form" action="/login" method="post">
+                <i class="ri-arrow-right-circle-line arrow_signup"></i>
+                <h1>Sign In</h1>
+                <span class="validation_registration hide">Invalid credentials</span>
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+
+                <button type="submit" class="submit_btn">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg"></div>
