@@ -32,6 +32,7 @@
     "mongoose": "^8.4.1",
     "multer": "^1.4.5-lts.1",
     "multer-s3": "^3.0.1",
+    "scrollreveal": "^4.0.9",
     "sharp": "^0.33.4",
     "swiper": "^11.1.4"
   }

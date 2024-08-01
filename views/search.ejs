@@ -6,11 +6,9 @@
         <% data.forEach(article => { %>
         <li>
             <a href="/post/<%= article._id  %>">
-                    <span><%= article.title  %></span>
-                    <!-- <span class="article-min_title"></span> -->
-                    <span >See it <span class="hand">👉</span></span>
+                <span><%= article.title  %></span>
+                <span >See it <span class="hand">👉</span></span>
             </a>
-
         </li>
         <% }) %>
     </ul>

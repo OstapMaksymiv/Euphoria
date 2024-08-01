@@ -1,4 +1,4 @@
-// import axios from "axios";
+
 const swipeR = document.querySelector('.swiper');
 const swiper_button_next = document.querySelector('.swiper-button-next')
 const cloud = document.querySelector('.cloud');
@@ -61,8 +61,6 @@ $(document).ready(function(){
     pauseOnHover:true
   });
 });
-
-
 if(from){
   from.addEventListener('input', function() {
     if (this.value > 500) {
@@ -77,44 +75,6 @@ if(from){
   });
 }
 
-// submit_btn.addEventListener('click', () => {
-//   let validation_registration = document.querySelector('.validation_registration');
-//   validation_registration.classList.remove('hide');
-// })
-
-
-// document.querySelector('.form').addEventListener('submit', async (event) => {
-//   event.preventDefault();
-  
-//   const formData = new FormData(event.target);
-  
-//   try {
-//       const response = await fetch('/login', {
-//           method: 'POST',
-//           body: formData,
-//       });
-
-//       if (response.redirected) {
-//           window.location.href = response.url;
-//           return;
-//       }
-
-//       const result = await response.json();
-
-//       if (response.status === 401) {
-//           document.querySelector('.validation_registration').classList.remove('hide');
-//       } else if (response.status === 402) {
-//           console.log('Login successful!');
-//           // Optionally redirect the user or perform other actions here
-//       }
-//   } catch (error) {
-//       console.error('Error:', error);
-//   }
-// });
-
-
-
-
 let windowWidth;
 function getCookieValue(cookieName) {
   const name = cookieName + "=";
@@ -128,15 +88,7 @@ function getCookieValue(cookieName) {
   }
   return null;
 }
-// Example usage
 document.addEventListener("DOMContentLoaded", function() {
-  // const urlParams = new URLSearchParams(window.location.search);
-  // if (!urlParams.has('width')) {
-  //   const windowWidth = window.innerWidth;
-  //   urlParams.set('width', windowWidth);
-  //   window.location.search = urlParams.toString();
-  // }
-
   const cookieValue = getCookieValue('token');
   if (cookieValue) {
     block_registration.innerHTML = '';
@@ -146,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
     a.innerHTML = 'Log out'
     block_registration.appendChild(a);
     if(window.innerWidth <= 530){
-      // logout_button.classList.classList.remove('hide')
+
       logout_button.classList.add('blockClass')
       button.classList.add('hide')
       block_registration.classList.add('hide')
@@ -160,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function() {
   else{ 
     logout_button.classList.remove('blockClass')
     button.classList.remove('hide')
-    // button.style.display='block'
   }
 });
 window.addEventListener("resize", function() {
@@ -179,9 +130,6 @@ window.addEventListener("resize", function() {
     }
   }
 })
-
-
-
 function filterActivities(value) {
   const type_btns = document.querySelectorAll('input[name="type"]');
   let activities = document.querySelectorAll(".activity");
@@ -197,57 +145,52 @@ function filterActivities(value) {
 
     }
   })
-  // activities.forEach((element) => {
-  //   if (value == "all") {
-  //     element.classList.remove("hide");
-  //   } 
-  // });
 }
 function filterProduct(value) {
-  //Button class code
+
   let buttons = document.querySelectorAll(".button-value");
   buttons.forEach((button) => {
-    //check if value equals innerText
+
     if (value.toUpperCase() == button.innerText.toUpperCase()) {
       button.classList.add("active-discover");
     } else {
       button.classList.remove("active-discover");
     }
   });
-  //select all cards
+
   let elements = document.querySelectorAll(".card");
-  //loop through all cards
+
   elements.forEach((element) => {
-    //display all cards on 'all' button click
+
     if (value == "all") {
       element.classList.remove("hide");
     } else {
-      //Check if element contains category class
+
       if (element.classList.contains(value)) {
-        //display element based on category
+
         element.classList.remove("hide");
       } else {
-        //hide other elements
+
         element.classList.add("hide");
       }
     }
   });
 }
-//Search button click
+
 if(search){
   search.addEventListener("click", () => {
-    //initializations
+
     let searchInput = document.getElementById("search-input").value;
     let elements = document.querySelectorAll(".product-name");
     let cards = document.querySelectorAll(".card");
-    //loop through all elements
+
     elements.forEach((element, index) => {
-      //check if text includes the search value
+
       if (element.innerText.toUpperCase().includes(searchInput.toUpperCase())) {
-        //display matching card
+
         cards[index].classList.remove("hide");
       } else {
-        //hide others
+
         cards[index].classList.add("hide");
       }
     });
@@ -255,7 +198,7 @@ if(search){
 }
 if(activity_search_btn){
   activity_search_btn.addEventListener('click', () => {
-    let activity_search_input = document.getElementById("activity_search-input").value.trim(); // Видалення пробілів на початку і в кінці
+    let activity_search_input = document.getElementById("activity_search-input").value.trim(); 
     const type_btns = document.querySelectorAll('input[name="type"]');
     let activities = document.querySelectorAll(".activity");
     let acts = document.querySelectorAll(".act");
@@ -270,8 +213,8 @@ if(activity_search_btn){
           let price = parseFloat(act.id);
           let priceMatch = !isNaN(price) && price >= fromValue && price <= toValue;
 
-          // Якщо поле пошуку не порожнє, фільтрувати також за назвою
-          let nameMatch = true; // За замовчуванням вважати, що фільтр за назвою проходить
+
+          let nameMatch = true; 
           if (activity_search_input) {
             let activity_titles = document.querySelectorAll('.activity-title');
             nameMatch = activity_titles[index].innerText.toUpperCase().includes(activity_search_input.toUpperCase());
@@ -289,8 +232,7 @@ if(activity_search_btn){
           let price = parseFloat(act.id);
           let priceMatch = !isNaN(price) && price >= fromValue && price <= toValue;
 
-          // Якщо поле пошуку не порожнє, фільтрувати також за назвою
-          let nameMatch = true; // За замовчуванням вважати, що фільтр за назвою проходить
+          let nameMatch = true; 
           if (activity_search_input) {
             let activity_titles = document.querySelectorAll('.activity-title');
             nameMatch = activity_titles[index].innerText.toUpperCase().includes(activity_search_input.toUpperCase());
@@ -307,7 +249,6 @@ if(activity_search_btn){
   });
 }
 
-//Initially display all products
 window.onload = () => {
   filterActivities("all")
   filterProduct("all")
@@ -327,39 +268,6 @@ if(registerBtn || loginBtn || arrow_signin || arrow_signup){
     registration_container.classList.remove("active");
   });
 }
-
-// addingPost_form.addEventListener('submit',async (e)=>{
-//   e.preventDefault()
-//   const formaData = new formaData()
-//   formaData.append("image", img_inp.files[0])
-//   const result = await axios.post(
-//     "http://localhost:3000/add-post",
-//     formData,
-//     {
-//       headers: { "Content-Type": "multipart/form-data" },
-//     }
-//   );
-// })
-// const discover_AllBtn = document.querySelectorAll('.discover');
-// const searchBar = document.querySelector('.searchBar');
-// const searchInput = document.getElementById('searchInput');
-// const searchClose = document.getElementById('searchClose');
-// for(let i = 0; i < discover_AllBtn.length; i++){
-
-//   discover_AllBtn[i].addEventListener('click', function(){
-//         searchBar.classList.toggle('open')
-//         searchInput.focus()
-//     })
-//     searchClose.addEventListener('click', function(){
-//         searchBar.classList.remove('open')
-//     })
-// }
-
-
-
-
-
-
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 'auto',
   spaceBetween: 15,
@@ -416,11 +324,11 @@ if(bgActive){
       rope_cloud.classList.add('animate__bounceOutUp')
     })
 }
-// || window.location.pathname === '/dashboard'
+
 if(window.location.pathname === '/search' ){
   main.style.display = 'block'
 }
-// else if(window.location.pathname === '/login'){}
+
 else if(window.location.pathname === '/admin'){
   signup.forEach(btn => {
     btn.style.display = 'none'
@@ -480,7 +388,6 @@ else if(window.location.pathname === '/register'){
 
    }, 2500);
 }
-// if(cloud){
   cloud.addEventListener('click', () => {
     window.scrollTo(0, 0);
     body.classList.toggle('hiddenClass');
@@ -510,8 +417,7 @@ else if(window.location.pathname === '/register'){
     rope_cloud.classList.toggle('animate__bounceInDown')
     rope_cloud.classList.toggle('animate__bounceOutUp')
   })
-// }
-// if(login || signup || button){
+if(login){
   login.addEventListener('click', () => {
   
     window.scrollTo(0, 0);
@@ -547,9 +453,9 @@ else if(window.location.pathname === '/register'){
   
     fa_shake.style.animationName='none'
   })
-
-  button.addEventListener('click', () => {
-  
+}if(signup){
+signup.forEach(btn => {
+  btn.addEventListener('click', () => {
     window.scrollTo(0, 0);
     body.classList.toggle('hiddenClass');
     section_hero.classList.toggle('blurClass')
@@ -577,49 +483,49 @@ else if(window.location.pathname === '/register'){
       document.querySelector('.journal_title').classList.add('blurClass')
     }
     bgActive.classList.toggle('blockClass')
-    registration_container.classList.remove('active')
+    registration_container.classList.add('active')
     temporary_class.classList.add('down')
     cloud.classList.add('stopMobileNav')
-  
+
     fa_shake.style.animationName='none'
   })
-  signup.forEach(btn => {
-    btn.addEventListener('click', () => {
-      window.scrollTo(0, 0);
-      body.classList.toggle('hiddenClass');
-      section_hero.classList.toggle('blurClass')
-      if(article){
-        article.classList.add('blurClass')
-      }
-      header__nav.classList.add('blurClass')
-      if(main_content && swipeR){
-        main_content.classList.add('blurClass')
-        swipeR.classList.add('blurClass')
-      }
-      if(wrapper){
-        wrapper.classList.add('blurClass')
-      }
-      if(activities_page){
-        activities_page.classList.add('blurClass')
-      }
-      if(activity_wrapper){
-        activity_wrapper.classList.add('blurClass')
-      }
-      if(comment_btn){
-        comment_btn.classList.add('blurClass')
-        document.querySelector('.activity-swiper').classList.add('blurClass')
-        document.querySelector('.mountain-swiper').classList.add('blurClass')
-        document.querySelector('.journal_title').classList.add('blurClass')
-      }
-      bgActive.classList.toggle('blockClass')
-      registration_container.classList.add('active')
-      temporary_class.classList.add('down')
-      cloud.classList.add('stopMobileNav')
+})}
+if(button){
+button.addEventListener('click', () => {
+  
+  window.scrollTo(0, 0);
+  body.classList.toggle('hiddenClass');
+  section_hero.classList.toggle('blurClass')
+  if(article){
+    article.classList.add('blurClass')
+  }
+  header__nav.classList.add('blurClass')
+  if(main_content && swipeR){
+    main_content.classList.add('blurClass')
+    swipeR.classList.add('blurClass')
+  }
+  if(wrapper){
+    wrapper.classList.add('blurClass')
+  }
+  if(activities_page){
+    activities_page.classList.add('blurClass')
+  }
+  if(activity_wrapper){
+    activity_wrapper.classList.add('blurClass')
+  }
+  if(comment_btn){
+    comment_btn.classList.add('blurClass')
+    document.querySelector('.activity-swiper').classList.add('blurClass')
+    document.querySelector('.mountain-swiper').classList.add('blurClass')
+    document.querySelector('.journal_title').classList.add('blurClass')
+  }
+  bgActive.classList.toggle('blockClass')
+  registration_container.classList.remove('active')
+  temporary_class.classList.add('down')
+  cloud.classList.add('stopMobileNav')
 
-      fa_shake.style.animationName='none'
-    })
-  })
-// }
+  fa_shake.style.animationName='none'
+})}
 if (comment_btn) {
   comment_btn.addEventListener('click', () => {
     window.scrollTo(0, 0);
@@ -644,7 +550,7 @@ if (comment_btn) {
     }
     comment_btn.classList.toggle('blurClass');
     crt_impr_btn.classList.add('down');
-    console.log(crt_impr_btn.classList); // Debug line to check class list
+    console.log(crt_impr_btn.classList);
     cloud.classList.add('stopMobileNav');
     fa_shake.style.animationName = 'none';
   });
@@ -676,14 +582,14 @@ if(swipeR){
 function adjustSliderWidth() {
   const windowWidth = window.innerWidth;
   if (windowWidth <= 957) {
-    slidesToShow = 1; // Show 1 slide if window width is less than or equal to 960px
+    slidesToShow = 1; 
   } else if (windowWidth <= 1300) {
-    slidesToShow = 2; // Show 2 slides if window width is less than or equal to 1300px
+    slidesToShow = 2; 
   } else {
-    slidesToShow = 3; // Show 3 slides for larger window widths
+    slidesToShow = 3;
   }
 
-  // Check if slick is already initialized
+
   if ($('.mountain-swiper').hasClass('slick-initialized')) {
     $('.mountain-swiper').slick('slickSetOption', 'slidesToShow', slidesToShow, true);
     $('.activity-swiper').slick('slickSetOption', 'slidesToShow', slidesToShow, true);
@@ -702,6 +608,46 @@ $(document).ready(function() {
   adjustSliderWidth();
   window.addEventListener('resize', adjustSliderWidth);
 });
+const sr = ScrollReveal({
+  origin: 'top',
+  distance: '40px',
+  opacity: 1,
+  scale: 1.1,
+  duration: 2500,
+  delay: 300,
+});
+
+sr.reveal(`.header__logo`,{scale:1, distance: '70px'} )
+sr.reveal(`.activity_title`,{scale:0.9} )
+sr.reveal(`.description`,{scale:0.9} )
+sr.reveal(`.title`,{scale:1.1} )
+sr.reveal(`.journal_title`,{scale:1.1} )
 
 
+sr.reveal(`.filter_activity`,{scale:1, distance: '100px', delay: 500, origin:'bottom' } )
+sr.reveal(`.discover-link`,{scale:1, distance: '70px' } )
+sr.reveal(`.activities-link`,{scale:1, distance: '80px', delay: 400 } )
+sr.reveal(`.journal-link`,{scale:1, distance: '90px', delay: 500 } )
+sr.reveal(`.header__nav .block-registration`,{scale:1, distance: '100px', delay: 600 } )
+sr.reveal(`.main-content .block-registration`,{scale:0.9, distance: '-30px'} )
+sr.reveal(`#search-container`,{scale:1, distance: '100px', delay: 350 ,origin:'right'} )
+sr.reveal(`#buttons`,{scale:1, distance: '100px', delay: 350 ,origin:'left'} )
+sr.reveal(`.button`,{scale:1, distance: '100px', delay: 500 } )
+sr.reveal(`.logout-button`,{scale:1, distance: '100px', delay: 500 } )
 
+function adjustSlider() {
+  const windowWidth = window.innerWidth;
+  if (windowWidth >= 1650) {
+    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(1)`,{scale:1, distance: '60px', delay: 500,origin:'right' } )
+    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(2)`,{scale:1, distance: '60px', delay: 600,origin:'right' } )
+    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(3)`,{scale:1, distance: '60px', delay: 700,origin:'right' } )
+    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(4)`,{scale:1, distance: '60px', delay: 800,origin:'right' } )
+    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(5)`,{scale:1, distance: '60px', delay: 900,origin:'right' } )
+    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(6)`,{scale:1, distance: '60px', delay: 1000,origin:'right' } )
+  }
+}
+
+$(document).ready(function() {
+  adjustSlider();
+  window.addEventListener('resize',  adjustSlider);
+});

@@ -1,7 +1,6 @@
 <h1 class="journal_title">What Our Clients Say</h1>
 <i style="<% if (access) { %> display: block; <% } else { %> display: none; <% } %>"
    class="ri-chat-quote-line comment_btn fa-shake fa-solid"></i>
-
 <div class="mountain-swiper">
     <% data.forEach(impression => { %>
         <div class="impression" style="
@@ -23,7 +22,6 @@
         </div>
     <% }) %>
 </div>
-
 <div class="activity-swiper">
     <% actimprdata.forEach(impres => { %>
         <div class="impression" style="
@@ -45,7 +43,6 @@
         </div>
     <% }) %>
 </div>
-
 <div class="crt-impr_btn">
     <form action="/add-userImpression" class="impression_form" method="POST">
         <h2>Add Your Impression</h2>
@@ -67,9 +64,6 @@
         <input type="submit" value="Add" class="btn form_btn">
     </form>
 </div>
-
-
-
   <div class="temporary_class">
     <div class="registration_container" id="container">
         <div class="form-container sign-up">
@@ -111,5 +105,4 @@
         </div>
     </div>
 </div>
-
 <div class="bg"></div>

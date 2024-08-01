@@ -1,10 +1,8 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
-const Post = require('../models/Post')
-const User = require('../models/User')
-const Activities = require('../models/Activities')
-const adminLayout = '../views/layouts/admin'
-const bcrypt = require('bcrypt');
+const Post = require('../models/Post');
+const Activities = require('../models/Activities');
+const adminLayout = '../views/layouts/admin';
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const connectDB = require('../config/db');
@@ -17,74 +15,35 @@ connectDB();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, 'uploads/'); // Зберігаємо файли в директорію 'uploads'
+      cb(null, 'uploads/'); 
   },
   filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname)); // Зберігаємо файли з унікальним ім'ям
+      cb(null, Date.now() + path.extname(file.originalname));
   }
 });
-
 const upload = multer({ storage: storage });
-
-// Створюємо папку uploads, якщо її не існує
 if (!fs.existsSync('uploads')) {
   fs.mkdirSync('uploads');
 }
-
-// router.get('/admin', async (req, res) => {
-//     try {
-
-//         res.render('admin/index', {layout: adminLayout})
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
 const authMiddleware = (req, res, next) => {
   try {
       const token = req.cookies.token;
       if (!token) {
-          return res.redirect('/'); // Redirect if no token is provided
+          return res.redirect('/'); 
       }
 
       const decoded = jwt.verify(token, jwtSecret);
       if (decoded.userId !== '669111c56c860137645f22d5') {
-          return res.redirect('/'); // Redirect if user ID does not match
+          return res.redirect('/'); 
       }
 
-      req.userId = decoded.userId; // Store the userId in the request object
-      next(); // Proceed to the next middleware or route handler
+      req.userId = decoded.userId;
+      next(); 
   } catch (error) {
       console.error('Authentication error:', error);
-      return res.redirect('/'); // Redirect in case of an error
+      return res.redirect('/'); 
   }
 };
-
-
-// const adminMiddleware = (req, res, next) => {
-//   if (req.user.email !== 'ostaperad@gmail.com') {
-//       return res.redirect('/');
-//   }
-//   next();
-// }
-
-// router.post('/admin', async (req, res) => {
-//     try {
-//         const {username , password} = req.body;
-//         const user = await User.findOne({username})
-//         if(!user){
-//             return res.status(401).json({message: "Invalid credentials"});
-//         }
-//         const isPasswordValid = await bcrypt.compare(password, user.password)
-//         if(!isPasswordValid){
-//             return res.status(401).json({message: "Invalid credentials"});
-//         }
-//         const token = jwt.sign({userId: user._id}, jwtSecret)
-//         res.cookie('token', token, {httpOnly: true})
-//         res.redirect('/dashboard')
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
 router.get('/dashboard', authMiddleware, async (req, res) => {
     try {
       res.render('admin/dashboard',{error: 'Invalid password'});
@@ -133,24 +92,7 @@ router.get('/dashboard/impressions',authMiddleware, async (req,res) => {
     console.log(error);
   }
 })
-// router.post('/register', async (req, res) => {
-//     try {
-//         const {username , password} = req.body;
-//         const hashedPassword = await bcrypt.hash(password, 10);
-//         try {
-//             const user = await User.create({username, password:hashedPassword})
-//             res.status(201).json({message: "User Created", user})
-//         } catch (error) {
-//            if(error.code === 11000){
-//             res.status(409).json({message: 'User already in user'})
-//            } 
-//            res.status(500).json({message: 'Internal server issues'})
-//         }
 
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
 router.get('/add-post', authMiddleware, async (req, res) => {
     try {
       
@@ -166,6 +108,43 @@ router.get('/add-post', authMiddleware, async (req, res) => {
     }
   
   });
+router.post('/add-post',upload.single('img'), authMiddleware,async (req, res) => {
+  try {
+    try {
+      if (!req.file) {
+        return res.status(400).send('No file uploaded');
+      }
+      const webpFilename = `${Date.now()}.webp`;
+      const webpPath = path.join('uploads', webpFilename);
+      await sharp(req.file.path)
+        .webp()
+        .toFile(webpPath);
+      fs.unlink(req.file.path, (err) => {
+        if (err) {
+          console.error(`Failed to delete original file: ${err.message}`);
+        } else {
+          console.log(`Original file ${req.file.path} deleted successfully`);
+        }
+      });
+      const newPost = new Post({
+        title: req.body.title,
+        mintitle: req.body.mintitle,
+        body: req.body.body,
+        section:req.body.section,
+        img: `/uploads/${webpFilename}`
+      });
+  
+      await newPost.save();
+      res.redirect('/dashboard');
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+});
 router.get('/add-impression', authMiddleware, async (req, res) => {
     try {
       
@@ -196,51 +175,7 @@ router.get('/add-impression', authMiddleware, async (req, res) => {
       res.status(500).send("There was a problem saving the impression.");
     }
   });
-router.post('/add-post',upload.single('img'), authMiddleware,async (req, res) => {
-    try {
-      try {
-        if (!req.file) {
-          return res.status(400).send('No file uploaded');
-        }
-    
-        // Create a unique name for the WebP file
-        const webpFilename = `${Date.now()}.webp`;
-        const webpPath = path.join('uploads', webpFilename);
-    
-        // Convert the image to WebP format
-        await sharp(req.file.path)
-          .webp()
-          .toFile(webpPath);
-    
-        // Delete the original file after conversion
-        fs.unlink(req.file.path, (err) => {
-          if (err) {
-            console.error(`Failed to delete original file: ${err.message}`);
-          } else {
-            console.log(`Original file ${req.file.path} deleted successfully`);
-          }
-        });
-    
-        // Create a new post with the WebP image filename
-        const newPost = new Post({
-          title: req.body.title,
-          mintitle: req.body.mintitle,
-          body: req.body.body,
-          section:req.body.section,
-          img: `/uploads/${webpFilename}` // Save the relative URL of the WebP file
-        });
-    
-        await newPost.save();
-        res.redirect('/dashboard');
-      } catch (error) {
-        console.log(error);
-        
-      }
-  
-    } catch (error) {
-      console.log(error);
-    }
-});
+
 router.get('/add-activity',authMiddleware, async (req,res) => {
   try {
     const data = await Post.find();
@@ -375,31 +310,20 @@ router.post('/add-activity', upload.fields([
       if (!existingPost) {
         return res.status(404).send('Post not found');
       }
-  
       let imagePath = existingPost.img;
-  
-      // Check if a new image file is uploaded
       if (req.file) {
         const webpFilename = `${Date.now()}.webp`;
         const webpPath = path.join('uploads', webpFilename);
-  
-        // Convert and save the new image
         await sharp(req.file.path)
           .webp()
           .toFile(webpPath);
-  
-        // Delete the uploaded original file
         fs.unlink(req.file.path, (err) => {
           if (err) {
             console.error(`Failed to delete original file: ${err.message}`);
           }
         });
-  
-        // Update the image path with the new image URL
         imagePath = `/uploads/${webpFilename}`;
       }
-  
-      // Update the post with the new data and image path
       await Post.findByIdAndUpdate(req.params.id, {
         title: req.body.title,
         mintitle: req.body.mintitle,
@@ -422,41 +346,32 @@ router.post('/add-activity', upload.fields([
     { name: 'third_img', maxCount: 1 }
   ]), async (req, res) => {
     try {
-      // Find the existing activity to get current image paths
+
       const existingActivity = await Activities.findById(req.params.id);
       if (!existingActivity) {
         return res.status(404).send('Activity not found');
       }
-  
       const imagePaths = {
         first_img: existingActivity.first_img,
         second_img: existingActivity.second_img,
         third_img: existingActivity.third_img
       };
-  
-      // Update image paths only if new files are uploaded
       for (const fieldName in req.files) {
         const file = req.files[fieldName][0];
         const webpFilename = `${Date.now()}-${file.originalname}.webp`;
         const webpPath = path.join('uploads', webpFilename);
-  
-        // Convert and save the new image
+
         await sharp(file.path)
           .webp()
           .toFile(webpPath);
-  
-        // Delete the uploaded original file to save space
         fs.unlink(file.path, (err) => {
           if (err) {
             console.error(`Failed to delete original file: ${err.message}`);
           }
         });
-  
-        // Set the new image path in the imagePaths object
         imagePaths[fieldName] = `/uploads/${webpFilename}`;
       }
-  
-      // Update the activity in the database with new or existing image paths
+
       await Activities.findByIdAndUpdate(req.params.id, {
         title: req.body.title,
         price: req.body.price,
@@ -511,7 +426,6 @@ router.post('/add-activity', upload.fields([
   });
   router.get('/logout', (req, res) => {
     res.clearCookie('token')
-    //res.json({message: "Log out successful"})
     res.redirect('/')
   });
 module.exports = router;

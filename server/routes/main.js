@@ -9,23 +9,6 @@ const Impressions = require('../models/Impressions');
 const ActivityImpressions = require('../models/ActivityImpressions');
 
 const jwtSecret  = process.env.JWT_SECRET;
-
-// function insertActivityImpressionsData() {
-//     ActivityImpressions.insertMany([
-//         {
-//             title: "Skydiving Thrills",
-//             text: "The rush of skydiving was unbelievable! The freefall and the expansive view were breathtaking.",
-//             name: 'Nina',
-//             surname: 'Kuznetsova'
-//         }
-        
-//     ])
-//     .then(() => console.log('Data inserted successfully'))
-//     .catch(err => console.error('Error inserting data:', err));
-// }
-
-// // Insert data
-// insertActivityImpressionsData();
 router.get('/', async (req, res) => {
     try {
         const data = await Post.find();
@@ -46,27 +29,6 @@ router.get('/post/:id', async (req, res) => {
         console.log(error);
     }
 })
-
-
-// router.post('/search', async (req, res) => {
-
-//     try {
-
-//         let searchTerm = req.body.searchTerm;
-//         const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g,"")
-//         const data = await Post.find({
-//             $or:[
-//                 {
-//                     title:{ $regex: new RegExp(searchNoSpecialChar, 'i')},
-//                     body:{ $regex: new RegExp(searchNoSpecialChar, 'i')}
-//                 }
-//             ]
-//         })
-//         res.render('search', {data})
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
 router.post('/register', async (req, res) => {
     try {
         const { firstName, lastName, email, password } = req.body;
@@ -116,8 +78,6 @@ router.post('/login', async (req, res) => {
 
 
 router.get('/discover', async (req,res) => {
-    // const data = await Post.find();
-    // const windowWidth = req.query.width ? parseInt(req.query.width, 10) : 1258;
     let perPage =  8;
     let page = req.query.page || 1;
 
@@ -178,7 +138,6 @@ router.get('/journal',async (req,res) => {
     if (token){
         access = true
         const decoded = jwt.verify(token, jwtSecret);
-        // Find the user by ID
         userdata = await User.findById(decoded.userId);
     }
     res.render('journal',{data,actimprdata,error: 'Invalid password',access,userdata})
@@ -208,10 +167,3 @@ router.post('/add-userImpression', async (req, res) => {
     }
 });
 module.exports = router;
-
-
-
-
-
-
-

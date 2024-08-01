@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define the schema
 const ImpressionsSchema = new Schema({
     title: {
         type: String,
