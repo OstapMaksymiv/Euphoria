@@ -17,6 +17,9 @@ body{
     position: relative;
     background-color: #111;
     overflow-x: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
 }
 
 img{
@@ -437,15 +440,15 @@ ul{
 }
 .img_cloud .header__list li {
   color: #0000009a;
+
   font-size: 1rem;
   font-weight: 600;
   display: block;
-  transition: transform 1s ease-in-out;
+
 }
 
 .img_cloud .header__list li a {
   display: inline-block;
-  transition: transform .4s ease-in-out;
 }
 
 
@@ -1085,7 +1088,7 @@ ul{
   transition: 0.7s ease-in-out;
 }
 .activity_section{
-  margin-top: 40px;
+
   flex-direction: column;
   display: flex;
   gap: 30px;
@@ -1467,6 +1470,15 @@ ul{
   }
 
 }
+@media(max-width:1100px){
+  .activity_img-block{
+    flex-direction: column;
+  }
+  .activity_section{
+    max-width: 490px;
+    text-align: center;
+  }
+}
 @media(max-width:1079px){
   .article{
     flex-direction: column;
@@ -1658,6 +1670,14 @@ ul{
   .main-content{
     gap: 10px !important;
   }
+  .activity_img-block img{
+    max-width: 350px;
+    max-height: 200px;
+  }
+  .activity_section{
+    max-width: 390px;
+
+  }
 }
 @media (max-width:550px){
   .admin-posts{
@@ -1772,6 +1792,21 @@ ul{
     z-index: 5;
     left: 20px;
   }
+  .activity_section{
+    max-width: 320px;
+  }
+  .activity_img-block{
+    padding: 10px;
+    gap: 10px;
+
+  }
+  .activity_text{
+    font-size: 14px;
+  }
+  .activity_img-block img{
+    max-width: 300px;
+    max-height: 180px;
+  }
 }
 @media(max-width:427px){
   .button-value{
@@ -1846,9 +1881,6 @@ ul{
   }
 }
 @media(any-hover:hover){
-  .header__list li:hover{
-    color: white;
-}
 .login:hover{
   color: white;
 }

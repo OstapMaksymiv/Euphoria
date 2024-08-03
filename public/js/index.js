@@ -622,6 +622,7 @@ sr.reveal(`.activity_title`,{scale:0.9} )
 sr.reveal(`.description`,{scale:0.9} )
 sr.reveal(`.title`,{scale:1.1} )
 sr.reveal(`.journal_title`,{scale:1.1} )
+sr.reveal(`.activity_section img`,{scale:0.8} )
 
 
 sr.reveal(`.filter_activity`,{scale:1, distance: '100px', delay: 500, origin:'bottom' } )
