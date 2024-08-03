@@ -631,8 +631,7 @@ sr.reveal(`.activities-link`,{scale:1, distance: '80px', delay: 400 } )
 sr.reveal(`.journal-link`,{scale:1, distance: '90px', delay: 500 } )
 sr.reveal(`.header__nav .block-registration`,{scale:1, distance: '100px', delay: 600 } )
 sr.reveal(`.main-content .block-registration`,{scale:0.9, distance: '-30px'} )
-sr.reveal(`#search-container`,{scale:1, distance: '100px', delay: 350 ,origin:'right'} )
-sr.reveal(`#buttons`,{scale:1, distance: '100px', delay: 350 ,origin:'left'} )
+
 sr.reveal(`.button`,{scale:1, distance: '100px', delay: 500 } )
 sr.reveal(`.logout-button`,{scale:1, distance: '100px', delay: 500 } )
 

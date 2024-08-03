@@ -1646,6 +1646,16 @@ ul{
   .alert{
     width: 284px !important;
   }
+  .crt-impr_btn{
+    width: 300px;
+  }
+  .impression_form h2{
+    font-size: 24px;
+  }
+  .impression_form textarea{
+    width: 260px;
+    height: 160px;
+  }
 }
 @media(max-width:577px){
   .article{
