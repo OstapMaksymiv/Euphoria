@@ -27,9 +27,9 @@
             <%- body  %>
         </main>
     </div>
-    <div class="fa-3x">
+    <div class="fa-3x" style="<% if (!cloud) { %>display:none;<% } %>">
         <i class="ri-cloud-line cloud fa-shake fa-solid"></i>
-    </div>
+      </div>
     <div class="bg"></div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>

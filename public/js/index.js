@@ -350,7 +350,14 @@ else if(window.location.pathname === '/dashboard/posts'){
   let admin_posts = document.querySelector('.admin-posts')
   admin_posts.style.marginTop ='30px'
 }
-else if(window.location.pathname === '/add-activity' || window.location.pathname === '/add-post' || window.location.pathname === '/add-impression' || window.location.pathname === '/dashboard' || window.location.pathname === '/journal'){
+
+else if(window.location.pathname === '/add-activity' || window.location.pathname === '/add-post' || window.location.pathname === '/add-impression' || window.location.pathname === '/dashboard' ){
+  // document.querySelector('.fa-3x').style.display='none'
+  main.style.display = 'flex'
+  main.style.flexDirection = 'column'
+  main.style.alignItems = 'center'
+}
+else if(window.location.pathname === '/journal'){
   main.style.display = 'flex'
   main.style.flexDirection = 'column'
   main.style.alignItems = 'center'
@@ -635,19 +642,3 @@ sr.reveal(`.main-content .block-registration`,{scale:0.9, distance: '-30px'} )
 sr.reveal(`.button`,{scale:1, distance: '100px', delay: 500 } )
 sr.reveal(`.logout-button`,{scale:1, distance: '100px', delay: 500 } )
 
-function adjustSlider() {
-  const windowWidth = window.innerWidth;
-  if (windowWidth >= 1650) {
-    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(1)`,{scale:1, distance: '60px', delay: 500,origin:'right' } )
-    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(2)`,{scale:1, distance: '60px', delay: 600,origin:'right' } )
-    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(3)`,{scale:1, distance: '60px', delay: 700,origin:'right' } )
-    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(4)`,{scale:1, distance: '60px', delay: 800,origin:'right' } )
-    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(5)`,{scale:1, distance: '60px', delay: 900,origin:'right' } )
-    sr.reveal(`.swiper-wrapper .swiper-slide:nth-child(6)`,{scale:1, distance: '60px', delay: 1000,origin:'right' } )
-  }
-}
-
-$(document).ready(function() {
-  adjustSlider();
-  window.addEventListener('resize',  adjustSlider);
-});

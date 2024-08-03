@@ -46,7 +46,7 @@ const authMiddleware = (req, res, next) => {
 };
 router.get('/dashboard', authMiddleware, async (req, res) => {
     try {
-      res.render('admin/dashboard',{error: 'Invalid password'});
+      res.render('admin/dashboard',{error: 'Invalid password',cloud:false});
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +58,8 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
       const data = await Post.find();
       res.render('admin/posts', {
         data,
-        layout: adminLayout
+        layout: adminLayout,
+        cloud:false
       });
   
     } catch (error) {
@@ -73,6 +74,7 @@ router.get('/dashboard/activitys',authMiddleware, async (req,res) => {
     res.render('admin/activitys', {
       data,
       layout: adminLayout
+      ,cloud:false
     });
 
   } catch (error) {
@@ -86,6 +88,7 @@ router.get('/dashboard/impressions',authMiddleware, async (req,res) => {
     res.render('admin/impressions', {
       data,
       layout: adminLayout
+      ,cloud:false
     });
 
   } catch (error) {
@@ -100,6 +103,7 @@ router.get('/add-post', authMiddleware, async (req, res) => {
       res.render('admin/add-post', {
         layout: adminLayout
         ,data
+        ,cloud:false
       });
   
     } catch (error) {
@@ -132,6 +136,7 @@ router.post('/add-post',upload.single('img'), authMiddleware,async (req, res) =>
         body: req.body.body,
         section:req.body.section,
         img: `/uploads/${webpFilename}`
+
       });
   
       await newPost.save();
@@ -152,6 +157,7 @@ router.get('/add-impression', authMiddleware, async (req, res) => {
       res.render('admin/add-impression', {
         layout: adminLayout
         ,data
+        ,cloud:false
       });
   
     } catch (error) {
@@ -182,6 +188,7 @@ router.get('/add-activity',authMiddleware, async (req,res) => {
     res.render('admin/add-activity', {
       layout: adminLayout
       ,data
+      ,cloud:false
     });
 
   } catch (error) {
@@ -251,6 +258,7 @@ router.post('/add-activity', upload.fields([
       res.render('admin/edit-post', {
         data,
         layout: adminLayout
+        ,cloud:false
       })
   
     } catch (error) {
@@ -266,6 +274,7 @@ router.post('/add-activity', upload.fields([
       res.render('admin/edit-impression', {
         data,
         layout: adminLayout
+        ,cloud:false
       })
   
     } catch (error) {
@@ -282,6 +291,7 @@ router.post('/add-activity', upload.fields([
       res.render('admin/edit-activity', {
         data,
         layout: adminLayout
+        ,cloud:false
       })
   
     } catch (error) {
