@@ -22,25 +22,29 @@ Euphoria is a web application built using JavaScript, EJS, and Express. The appl
 
    ```bash
    cd euphoria
-3.Install the dependencies:
+3. Install the dependencies:
 
-  ```bash
-  npm install
-4.Create a .env file in the root directory and add the necessary environment variables:
+   ```bash
+   npm install
+4. Create a .env file in the root directory and add the necessary environment variables:
 
   ```bash
   MONGODB_URI=<your_mongodb_connection_string>
   SESSION_SECRET=<your_session_secret>
   AWS_ACCESS_KEY_ID=<your_aws_access_key_id>
   AWS_SECRET_ACCESS_KEY=<your_aws_secret_access_key>
+   ```
+
 # Usage
 ## Running the application
 To start the application in development mode with Nodemon:
-```npm run dev
-
+```
+npm run dev
+```
 To start the application in production mode:
-```npm start
-
+```
+npm start
+```
 # Directory Structure
 euphoria/
 │
@@ -89,7 +93,7 @@ euphoria/
 - `scrollreveal`
 - `sharp`
 - `swiper`
-- `nodemon` (dev dependency)
+- `nodemon`
 
 ## Contributing
 Contributions are welcome! Follow these steps:
