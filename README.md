@@ -48,21 +48,21 @@ npm start
 # Directory Structure
 euphoria/
 │
-├── public/             # Static files (CSS, JS, images)
-├── routes/             # Express routes
-│   ├── admin.js
-│   ├── index.js
-│   └── user.js
-├── views/              # EJS templates
-│   ├── layouts/
-│   ├── partials/
-│   ├── admin/
-│   ├── index.ejs
-│   └── ...
-├── .env                # Environment variables
-├── app.js              # Main application file
-├── package.json        # NPM dependencies and scripts
-└── README.md           # Project documentation
+├── public/ # Static files (CSS, JS, images)
+├── routes/ # Express routes
+│ ├── admin.js
+│ ├── index.js
+│ └── user.js
+├── views/ # EJS templates
+│ ├── layouts/
+│ ├── partials/
+│ ├── admin/
+│ ├── index.ejs
+│ └── ...
+├── .env # Environment variables
+├── app.js # Main application file
+├── package.json # NPM dependencies and scripts
+└── README.md # Project documentation
 
 # Features
 - **User Authentication**: Secure user authentication with JWT and bcrypt.
